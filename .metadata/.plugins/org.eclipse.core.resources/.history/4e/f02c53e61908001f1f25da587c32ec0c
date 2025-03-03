@@ -1,0 +1,29 @@
+import java.util.Random;
+
+public class NotaFiscal {
+	int numNF;
+	String dtEmissao;
+	Cliente cliente;
+	Produto [] produtos;
+	double valorTotal;
+	
+	public NotaFiscal(String dtEmissao, Cliente cliente, Produto[] produtos) {
+		this.numNF = gerarNumNF();
+		this.dtEmissao = dtEmissao;
+		this.cliente = cliente;
+		this.produtos = produtos;
+	}
+	
+	public int gerarNumNF () {
+		Random rd = new Random ();
+		return rd.nextInt(100,200);
+	}
+	
+	public void calculoValorTotal () {
+		for (int i = 0; i < produtos.length; i++) {
+			
+		}
+	}
+	
+	
+}

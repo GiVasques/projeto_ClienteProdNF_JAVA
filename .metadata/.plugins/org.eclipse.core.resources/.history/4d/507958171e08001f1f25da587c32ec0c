@@ -1,0 +1,90 @@
+import static javax.swing.JOptionPane.*;
+import static java.lang.Integer.parseInt;
+
+public class Util {
+	
+	private final int N = 10;
+	private Cliente [] clientes = new Cliente [N];
+	private int auxC;
+	private Produto [] produtos = new Produto [N];
+	private int auxP;
+
+	public void menu () {
+		
+		
+		int opcao = -1;
+		do {
+			
+		} while (opcao != 4);
+		
+		
+	}
+	
+	public void textoMenu () {
+		String texto = "Bem vindo! Qual área deseja acessar? \n";
+		texto += "1. Cliente \n";
+		texto += "2. Produto \n";
+		texto += "3. NFs \n";
+		texto += "4. Encerrar programa \n";
+	}
+	
+	public void menuCliente () {
+		String texto = "Bem vindo à Área de Gerenciamento de Clientes! \n";
+		texto += "1. Cadastrar Novo Cliente \n";
+		texto += "2. Pesquisar Clientes \n";
+		texto += "3. Listagem Clientes \n";
+		texto += "4. Retornar para menu inicial \n";
+		
+		int opcao;
+		do {
+		opcao = parseInt(showInputDialog(texto));
+		} while (opcao < 1 || opcao > 4);
+		
+		if (opcao >= 1 && opcao <=3) {
+			switch (opcao) {
+				case 1:
+					if (auxC < N) {
+						clientes [auxC] = adicionarCliente();
+						auxC++;
+					}
+					else {
+						showMessageDialog(null, "Número máximo de clientes cadastrados atingido!");
+					}
+					break;
+				case 2:
+					Cliente aux = pesquisarCliente();
+					if (aux == null) {
+						showMessageDialog(null, "Não existe um cliente com esse ID!");
+					}
+					else {
+						showMessageDialog(null, aux.getDados());
+					}
+			}
+		}
+	}
+	
+	public void menuProduto () {
+		String texto = "Bem vindo à Área de Gerenciamento de Produtos! \n";
+		texto += "1. Cadastrar Novo Produto \n";
+		texto += "2. Pesquisar Produtos \n";
+		texto += "3. Listagem Produtos \n";
+	}
+	
+	public Cliente adicionarCliente () {
+		String nome = showInputDialog("Qual é o nome do Novo Cliente?");
+		String endereco = showInputDialog("Qual é o endereço do Novo Cliente?");
+		Cliente cliente = new Cliente (nome, endereco);
+		showMessageDialog(null, "O cliente de ID " + cliente.getId() + "foi cadastrado!");
+		return cliente;
+	}
+	
+	public Cliente pesquisarCliente () {
+		int id = parseInt(showInputDialog("Qual o ID do cliente que se deseja pesquisar?"));
+		for (int i = 0; i < auxC; i++) {
+			if (clientes [i].getId() == id) {
+				return clientes [i];
+			}
+		}
+		return null;
+	}
+}

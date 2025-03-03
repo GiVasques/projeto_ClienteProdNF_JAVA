@@ -1,0 +1,33 @@
+import java.util.Random;
+
+public class Produto {
+	private int id;
+	private String descricao;
+	private double precoUnit;
+	private int qntEstoque;
+	
+	public Produto (String descricao, double precoUnit, int qntEstoque) {
+		this.descricao = descricao;
+		this.precoUnit = precoUnit;
+		this.qntEstoque = qntEstoque;
+		this.id = gerarId();
+	}
+	
+	public int gerarId () {
+		Random rd = new Random ();
+		return rd.nextInt(100,200);
+	}
+	
+	
+	// public double adicionarProduto () {}
+	
+	// public void pesquisarProduto () {}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void atualizarEstoque (int quantidade) {
+		this.qntEstoque = quantidade;
+	}
+}
